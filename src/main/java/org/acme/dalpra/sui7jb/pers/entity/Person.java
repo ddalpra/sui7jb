@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.acme.dalpra.sui7jb.entity.BaseEntity;
 
 import java.time.LocalDate;
 
@@ -11,8 +12,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Person {
-    public Long id;
-    public String name;
-    public LocalDate birthDate;
+public class Person extends BaseEntity {
+
+    private String name;
+    private LocalDate birthDate;
 }
