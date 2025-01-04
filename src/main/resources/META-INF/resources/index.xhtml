@@ -1,70 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:p="primefaces"
+                xmlns:of="http://omnifaces.org/functions"
+                template="template/template.xhtml">
 
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+    <ui:define name="content">
+        <div class="home">
+            <div id="homepage-intro" class="introduction #{app.darkMode ? 'introduction-dark' : ''}">
+                <div class="introduction-promo">Quarkus meets Faces!</div>
+                <div class="introduction-title">The Ultimate Deployment Environment</div>
+                <div class="introduction-subtitle">for Faces/JSF</div>
 
-    http://www.apache.org/licenses/LICENSE-2.0
+                <h:link styleClass="action-button" outcome="/ui/ajax/basic.xhtml">GET STARTED</h:link>
+                <p:graphicImage alt="devices" styleClass="introduction-devices" name="images/home/quarkus_banner.png"
+                                library="showcase"/>
+            </div>
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<!DOCTYPE html>
-<html lang="en"
-      xmlns:f="jakarta.faces.core"
-      xmlns:h="jakarta.faces.html"
-      xmlns:ui="jakarta.faces.facelets"
-      xmlns:p="http://primefaces.org/ui">
-<f:view contentType="text/html">
-    <h:head>
-    </h:head>
-
-    <h:body>
-        <div class="card">
-            <h:form id="form">
-                <p:growl id="msgs" showDetail="true"/>
-
-                <p:dataTable id="people" widgetVar="people" var="person" value="#{dtPeopleView.people}"
-                             editable="true">
-                    <f:facet name="header">
-                        Jakarta EE 10 demo with Primefaces
-                    </f:facet>
-
-                    <p:column headerText="Name">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{person.name}"/></f:facet>
-                            <f:facet name="input"><p:inputText value="#{person.name}" style="width:100%"
-                                                               label="Name"/></f:facet>
-                        </p:cellEditor>
-                    </p:column>
-
-                    <p:column headerText="Birthdate">
-                        <p:cellEditor>
-                            <f:facet name="output"><h:outputText value="#{person.birthDate}"/></f:facet>
-                            <f:facet name="input"><p:inputText id="modelInput" value="#{person.birthDate}"
-                                                               style="width:100%"/></f:facet>
-                        </p:cellEditor>
-                    </p:column>
-                </p:dataTable>
-
-                <div class="grid mt-3">
-                    <div class="col-12">
-                        <p:commandButton value="Add new row" process="@this" update=":form:msgs"
-                                         action="#{dtPeopleView.onAddNew()}" oncomplete="PF('people').addRow();"/>
-                    </div>
+            <div class="grid m-2">
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Quarkus">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.quarkus}</span>
+                    </p:card>
                 </div>
-
-            </h:form>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="PrimeFaces">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.primeFaces}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="OmniFaces">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.omniFaces}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2 text-overflow-ellipsis white-space-nowrap"
+                            title="PrimeFaces Extensions">
+                        <span class="font-medium"
+                              style="font-family: monospace">#{technicalInfo.primeFacesExt}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Faces">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.facesImpl}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Server">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.server}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Memory">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.memory}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Startup">
+                        <span class="font-medium"
+                              style="font-family: monospace">#{of:formatDate(startup.zonedDateTime, 'yyyy-MM-dd HH:mm:ss')}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Java Runtime">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.jvmRuntime}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Java Vendor">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.jvmVendor}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Java Version">
+                        <span class="font-medium" style="font-family: monospace">#{technicalInfo.jvmVersion}</span>
+                    </p:card>
+                </div>
+                <div class="col-12 md:col-6 lg:col-4 xl:col-3">
+                    <p:card styleClass="w-24rem mb-2" title="Operating System">
+                        <span class="font-medium"
+                              style="font-family: monospace">#{technicalInfo.os}</span>
+                    </p:card>
+                </div>
+            </div>
         </div>
+    </ui:define>
 
-    </h:body>
-</f:view>
-</html>
+</ui:composition>

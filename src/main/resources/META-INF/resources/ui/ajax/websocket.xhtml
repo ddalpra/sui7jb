@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:h="jakarta.faces.html"
+                xmlns:f="jakarta.faces.core"
+                xmlns:o="http://omnifaces.org/ui"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">
+        Ajax Framework <span class="subitem">WebSocket</span>
+    </ui:define>
+
+    <ui:define name="description">
+        WebSocket allows server side push events using OmniFaces <code>o:socket</code>. Faces
+        <code>f:websocket</code> is not currently working
+        due to an open MyFaces defect: <a href="https://issues.apache.org/jira/projects/MYFACES/issues/MYFACES-4685"
+                                          rel="noopener" target="_blank">MYFACES-4685</a>
+    </ui:define>
+
+    <ui:define name="implementation">
+        <div class="card">
+            <h:form id="frmSocket">
+                <o:socket scope="view" channel="pushChannel" onmessage="function(m){console.log(m);}">
+                    <f:ajax event="quarkusMessage" render="frmSocket:txt_count"/>
+                </o:socket>
+                <h1 class="text-center">
+                    <h:outputText id="txt_count" value="#{webSocketView.count}"/>
+                </h1>
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,70 @@
+
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+    KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+    <h:head>
+    </h:head>
+
+    <h:body>
+        <div class="card">
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"/>
+
+                <p:dataTable id="people" widgetVar="people" var="person" value="#{dtPeopleView.people}"
+                             editable="true">
+                    <f:facet name="header">
+                        Jakarta EE 10 demo with Primefaces
+                    </f:facet>
+
+                    <p:column headerText="Name">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{person.name}"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{person.name}" style="width:100%"
+                                                               label="Name"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Birthdate">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{person.birthDate}"/></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{person.birthDate}"
+                                                               style="width:100%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                </p:dataTable>
+
+                <div class="grid mt-3">
+                    <div class="col-12">
+                        <p:commandButton value="Add new row" process="@this" update=":form:msgs"
+                                         action="#{dtPeopleView.onAddNew()}" oncomplete="PF('people').addRow();"/>
+                    </div>
+                </div>
+
+            </h:form>
+        </div>
+
+    </h:body>
+</f:view>
+</html>

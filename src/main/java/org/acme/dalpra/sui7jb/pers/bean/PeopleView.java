@@ -15,6 +15,7 @@ import java.util.List;
 @RequestScoped
 public class PeopleView implements Serializable {
     private List<Person> people;
+    private Person person;
 
     @RestClient
     PeopleService peopleService;
@@ -27,4 +28,18 @@ public class PeopleView implements Serializable {
     public List<Person> getPeople(){
         return people;
     }
+
+    public void setPerson(Person person){
+        this.person = person;
+    }
+
+    public Person getPerson(){
+        return this.person;
+    }
+    public void postPerson(){
+        Person newPerson = peopleService.postPerson(person);
+        System.out.println("GT - Salvataggio " + newPerson.getId());
+
+    }
+
 }
