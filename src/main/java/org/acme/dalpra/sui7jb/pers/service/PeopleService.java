@@ -1,10 +1,7 @@
 package org.acme.dalpra.sui7jb.pers.service;
 
 import jakarta.inject.Named;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.*;
 import org.acme.dalpra.sui7jb.pers.entity.Person;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
@@ -19,6 +16,11 @@ public interface PeopleService {
     List<Person> getPeople();
 
     @POST
-    @Path("/people/{id}")
+    @Path("/people")
     Person postPerson(Person person);
+
+    @PUT
+    @Path("/people/{id}")
+    Person putPerson(@PathParam("id") UUID id, Person person);
+
 }
