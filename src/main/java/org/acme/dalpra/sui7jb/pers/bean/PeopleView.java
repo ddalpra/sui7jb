@@ -12,6 +12,7 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.primefaces.PrimeFaces;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named("dtPeopleView")
@@ -30,6 +31,7 @@ public class PeopleView implements Serializable {
     @PostConstruct
     public void init(){
         people = peopleService.getPeople();
+        selectedPeople = new ArrayList<Person>();
     }
 
     public List<Person> getPeople(){
