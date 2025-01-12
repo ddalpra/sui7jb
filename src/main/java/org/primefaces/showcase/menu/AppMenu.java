@@ -44,7 +44,8 @@ public class AppMenu {
 
         //PRIMEICONS CATEGORY START
         List<MenuItem> ImpostazioniMenuItems = new ArrayList<>();
-        ImpostazioniMenuItems.add(new MenuItem("People", "/people"));
+        ImpostazioniMenuItems.add(new MenuItem("People", "/app/people"));
+        ImpostazioniMenuItems.add(new MenuItem("Items", "/app/item"));
         menuCategories.add(new MenuCategory("Impostazioni", ImpostazioniMenuItems));
         //PRIMEICONS CATEGORY END
 

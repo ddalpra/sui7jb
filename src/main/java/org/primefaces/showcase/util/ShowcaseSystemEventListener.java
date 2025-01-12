@@ -28,15 +28,11 @@ import jakarta.faces.event.AbortProcessingException;
 import jakarta.faces.event.SystemEvent;
 import jakarta.faces.event.SystemEventListener;
 
-import org.primefaces.component.datatable.DataTable;
-import org.primefaces.component.export.DataExporters;
-import org.primefaces.showcase.view.data.dataexporter.TextExporter;
-
 public class ShowcaseSystemEventListener implements SystemEventListener {
 
     @Override
     public void processEvent(SystemEvent event) throws AbortProcessingException {
-        DataExporters.register(DataTable.class, TextExporter.class, "txt");
+        //DataExporters.register(DataTable.class, TextExporter.class, "txt");
     }
 
     @Override
